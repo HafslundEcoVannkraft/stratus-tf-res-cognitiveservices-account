@@ -22,6 +22,9 @@ resource "azapi_resource" "cognitive_account" {
       dynamicThrottlingEnabled      = false
       publicNetworkAccess           = var.corp_config == null ? "Enabled" : "Disabled"
       restrictOutboundNetworkAccess = var.restrict_outbound_access # guardrails requirement
+      networkAcls = {
+        defaultAction = var.corp_config == null ? "Allow" : "Deny"
+      }
     }
     sku = {
       name = var.sku
