@@ -1,5 +1,5 @@
 <!-- BEGIN_TF_DOCS -->
-# Stratus Terraform Verified Module Storage Account Module
+# Stratus Terraform Verified Module Cognitive Services Account
 
 <!-- markdownlint-disable MD033 -->
 ## Requirements
@@ -12,34 +12,25 @@ The following requirements are needed by this module:
 
 The following resources are used by this module:
 
-- [azapi_resource.container_v2](https://registry.terraform.io/providers/Azure/azapi/latest/docs/resources/resource) (resource)
-- [azapi_resource.private_endpoint_v2](https://registry.terraform.io/providers/Azure/azapi/latest/docs/resources/resource) (resource)
-- [azapi_resource.storage_account_v2](https://registry.terraform.io/providers/Azure/azapi/latest/docs/resources/resource) (resource)
-- [azapi_update_resource.storage_account_blob_service_v2](https://registry.terraform.io/providers/Azure/azapi/latest/docs/resources/update_resource) (resource)
-- [time_sleep.wait_for_private_dns_zone_policy_v2](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) (resource)
-- [azurerm_resource_group.rg](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) (data source)
-- [azurerm_virtual_network.vnets](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/virtual_network) (data source)
+- [azapi_resource.cognitive_account](https://registry.terraform.io/providers/Azure/azapi/latest/docs/resources/resource) (resource)
+- [azapi_resource.private_endpoint](https://registry.terraform.io/providers/Azure/azapi/latest/docs/resources/resource) (resource)
+- [azapi_resource.rg](https://registry.terraform.io/providers/Azure/azapi/latest/docs/data-sources/resource) (data source)
+- [azapi_resource.vnets](https://registry.terraform.io/providers/Azure/azapi/latest/docs/data-sources/resource) (data source)
 
 <!-- markdownlint-disable MD013 -->
 ## Required Inputs
 
 The following input variables are required:
 
-### <a name="input_pe_subnets"></a> [pe\_subnets](#input\_pe\_subnets)
+### <a name="input_cognitive_account_name"></a> [cognitive\_account\_name](#input\_cognitive\_account\_name)
 
-Description: List of subnets to create private endpoints for
-
-Type: `list(string)`
-
-### <a name="input_rg_name"></a> [rg\_name](#input\_rg\_name)
-
-Description: Resource group name
+Description: Name of the cognitive account
 
 Type: `string`
 
-### <a name="input_storage_account_name"></a> [storage\_account\_name](#input\_storage\_account\_name)
+### <a name="input_rg_id"></a> [rg\_id](#input\_rg\_id)
 
-Description: Name of the storage account
+Description: Resource group id
 
 Type: `string`
 
@@ -47,39 +38,46 @@ Type: `string`
 
 The following input variables are optional (have default values):
 
-### <a name="input_container_names"></a> [container\_names](#input\_container\_names)
+### <a name="input_corp_config"></a> [corp\_config](#input\_corp\_config)
 
-Description: List of names for containers to create
+Description: Block with necessary configuration parameters for corp environments. pe\_subnets is a list of subnets to create private endpoints in, custom\_domain\_name is the custom domain name to use for the cognitive account.
 
-Type: `list(string)`
+Type:
 
-Default: `[]`
+```hcl
+object({
+    pe_subnets         = list(string)
+    custom_domain_name = string
+  })
+```
+
+Default: `null`
 
 ### <a name="input_location"></a> [location](#input\_location)
 
-Description: Location of the storage account. Defaults to resource group location.
+Description: Location of the cognitive account. Defaults to resource group location.
 
 Type: `string`
 
 Default: `""`
 
-### <a name="input_network_acls_bypass"></a> [network\_acls\_bypass](#input\_network\_acls\_bypass)
+### <a name="input_sku"></a> [sku](#input\_sku)
 
-Description: The network ACLs bypass value. Possible values are `AzureServices`, `None`, and `VirtualNetwork`.
+Description: The SKU of the cognitive account
 
 Type: `string`
 
-Default: `"None"`
+Default: `"S0"`
 
 ## Outputs
 
 The following outputs are exported:
 
-### <a name="output_storage_account_name"></a> [storage\_account\_name](#output\_storage\_account\_name)
+### <a name="output_cognitive_account_resource_id"></a> [cognitive\_account\_resource\_id](#output\_cognitive\_account\_resource\_id)
 
 Description: n/a
 
-### <a name="output_storage_account_resource_id"></a> [storage\_account\_resource\_id](#output\_storage\_account\_resource\_id)
+### <a name="output_identity"></a> [identity](#output\_identity)
 
 Description: n/a
 

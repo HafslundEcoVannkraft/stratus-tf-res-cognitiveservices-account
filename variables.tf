@@ -1,32 +1,36 @@
-variable "rg_name" {
+variable "rg_id" {
   type        = string
-  description = "Resource group name"
+  description = "Resource group id"
 }
 
-variable "storage_account_name" {
+variable "cognitive_account_name" {
   type        = string
-  description = "Name of the storage account"
+  description = "Name of the cognitive account"
 }
 
 variable "location" {
   type        = string
-  description = "Location of the storage account. Defaults to resource group location."
+  description = "Location of the cognitive account. Defaults to resource group location."
   default     = ""
 }
 
-variable "pe_subnets" {
-  type        = list(string)
-  description = "List of subnets to create private endpoints for"
+variable "sku" {
+  type        = string
+  description = "The SKU of the cognitive account"
+  default     = "S0"
 }
 
-variable "container_names" {
-  type        = list(string)
-  description = "List of names for containers to create"
-  default     = []
+variable "corp_config" {
+  type = object({
+    pe_subnets         = list(string)
+    custom_domain_name = string
+  })
+  description = "Block with necessary configuration parameters for corp environments. pe_subnets is a list of subnets to create private endpoints in, custom_domain_name is the custom domain name to use for the cognitive account."
+  default     = null
 }
 
-variable "network_acls_bypass" {
-  type = string
-  description = "The network ACLs bypass value. Possible values are `AzureServices`, `None`, and `VirtualNetwork`."
-  default = "None"
+variable "restrict_outbound_access" {
+  type        = bool
+  description = "Whether to restrict outbound network access"
+  default     = true
 }

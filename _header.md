@@ -1,2 +1,2 @@
-# Stratus Terraform Verified Module Storage Account Module
+# Stratus Terraform Verified Module Cognitive Services Account
 
