@@ -61,6 +61,14 @@ Type: `string`
 
 Default: `""`
 
+### <a name="input_restrict_outbound_access"></a> [restrict\_outbound\_access](#input\_restrict\_outbound\_access)
+
+Description: Whether to restrict outbound network access
+
+Type: `bool`
+
+Default: `true`
+
 ### <a name="input_sku"></a> [sku](#input\_sku)
 
 Description: The SKU of the cognitive account
@@ -75,11 +83,11 @@ The following outputs are exported:
 
 ### <a name="output_cognitive_account_resource_id"></a> [cognitive\_account\_resource\_id](#output\_cognitive\_account\_resource\_id)
 
-Description: n/a
+Description: The resource ID of the created cognitive account
 
 ### <a name="output_identity"></a> [identity](#output\_identity)
 
-Description: n/a
+Description: The system-assigned managed identity of the created cognitive account
 
 ## Modules
 
