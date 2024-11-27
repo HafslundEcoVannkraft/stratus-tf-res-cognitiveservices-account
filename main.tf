@@ -21,7 +21,7 @@ resource "azapi_resource" "cognitive_account" {
       disableLocalAuth              = true # guardrails requirement
       dynamicThrottlingEnabled      = false
       publicNetworkAccess           = var.corp_config == null ? "Enabled" : "Disabled"
-      restrictOutboundNetworkAccess = true # guardrails requirement
+      restrictOutboundNetworkAccess = var.restrict_outbound_access # guardrails requirement
     }
     sku = {
       name = var.sku
