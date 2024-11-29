@@ -19,7 +19,7 @@ resource "azapi_resource" "cognitive_account" {
       customSubDomainName           = var.corp_config == null ? null : var.corp_config.custom_domain_name
       apiProperties                 = {}
       disableLocalAuth              = true # guardrails requirement
-      dynamicThrottlingEnabled      = false
+      dynamicThrottlingEnabled      = var.var.dynamic_throttling_enabled
       publicNetworkAccess           = var.corp_config == null ? "Enabled" : "Disabled"
       restrictOutboundNetworkAccess = var.restrict_outbound_access # guardrails requirement
       networkAcls = {

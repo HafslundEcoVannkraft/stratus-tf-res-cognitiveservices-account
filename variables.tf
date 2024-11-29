@@ -34,3 +34,9 @@ variable "restrict_outbound_access" {
   description = "Whether to restrict outbound network access"
   default     = true
 }
+
+variable "dynamic_throttling_enabled" {
+  type        = bool
+  description = "Whether to enable dynamic throttling"
+  default     = true
+}
